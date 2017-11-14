@@ -10,16 +10,16 @@ const example = {
   template,
   tooltips: {
     string: {
-      text: `This is a string. Strings can be bounded or delimted by \`backticks\`, 'single qoutes', or "double quotes"`,
+      text: `This is a string, or a series of characters. A string is bounded or delimted by \`backticks\`, 'single qoutes', or "double quotes".` ,
     },
 
     function: {
-      text: "The fundamental unit of code in javascript. Functions are possibly the most important feature of the language.",
+      text: "A function contains code and is run when invoked or called. <br><br> Functions have inputs, called either arguments or parameters. <br><br> When invoking a function, like below with `add(3, 4)`, we pass it 2 arguments, the numbers 3 and 4. <br><br> Parameters are what inputs a function can take, and are defined by the function declaration, like on the line above.",
       terms: ["Hoisting", "Scope", "Closure", "Delimiters", "Arguments", "Parameters", "Signature"]
     },
 
     params: {
-      text: "This is the function's signature: what parameters it takes."
+      text: "This is the function's signature, or what parameters it takes."
     },
 
     title: {
@@ -31,11 +31,11 @@ const example = {
     },
 
     return: {
-      text: "The return (or output) of the function."
+      text: "The return (or output) of the function. This will be the value of `sum` when the function `add` is invoked."
     },
 
     let: {
-      text: "We're declaring a variable named sum here. Variables declared with let exist only within and not outside whatever their current scope is."
+      text: "A `let` variable named `sum` is declared here. Variables declared with `let` exist only within and not outside of their current scope."
     },
 
     number: {
