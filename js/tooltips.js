@@ -48,27 +48,36 @@ $(document).ready( _=> {
   $('pre code').text(example.template)
   hljs.initHighlighting()
 
-  $('span[class^="hljs-"]').hover(highlightActive)
-  $('span[class^="hljs-"]').hover(showToolTip)
+  $('span[class^="hljs-"]').mouseover(highlightActive)
+  $('span[class^="hljs-"]').mouseout(highlightActive)
+  $('span[class^="hljs-"]').mouseover(showToolTip)
+  $('span[class^="hljs-"]').mouseout(hideToolTip)
 
-  function highlightActive (event) {
+  function highlightActive () {
     $(this).toggleClass('active')
+  }
+
+  function hideToolTip () {
+    $('#tooltip').toggleClass('hidden')
+    return false
   }
 
   function showToolTip (event) {
     event.stopImmediatePropagation()
-    const classes = $(this).attr('class')
-    const nodeText = $(this).text()
+    const $this = $(this)
+    const classes = $this.attr('class')
+    const nodeText = $this.text()
     const highlightClass = classes.replace('hljs-', '').replace(' active', '')
     const tipKey = highlightClass === 'keyword'
       ? nodeText
       : highlightClass
-    const $tooltip = $(tooltip)
+    const $tooltip = $('#tooltip')
     if (tipKey !== 'keyword') {
       const toolTipText = example.tooltips[tipKey].text
       $tooltip.toggleClass('hidden').html(toolTipText)
-      $tooltip.css('top', event.pageY)
-      $tooltip.css('left', event.pageX)
+      const posObj = $this.position()
+      $tooltip.css('top', posObj.top + $this.height())
+      $tooltip.css('left', posObj.left)
     }
   }
 })
