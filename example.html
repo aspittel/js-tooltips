@@ -36,6 +36,8 @@
       console.log('Adding', parameterOne, 'and', parameterTwo)
       return parameterOne + parameterTwo
     }
+
+    let sum = add(3, 4)
   </code> 
 </pre>
 
@@ -74,6 +76,14 @@
 
         return: {
           text: "The return (or output) of the function."
+        },
+
+        let: {
+          text: "We're declaring a variable named sum here. Variables declared with let exist only within and not outside whatever their current scope is."
+        },
+
+        number: {
+          text: "This is a number in JavaScript. <br><br> It's being passed as one of two arguments to the function `add`, invoked here. <br><br>Functions are invoked with `()`. When we pass arguments to a function we are invoking or calling, we place them the in the parentheses, as is done above with 3 and 4."
         }
       }
 
@@ -89,7 +99,8 @@
         $(this).toggleClass('active')
         const $tooltip = $(tooltip)
         if (tipKey !== 'keyword') {
-          $tooltip.toggleClass('hidden').text(tooltips[tipKey].text)
+          console.log(tipKey)
+          $tooltip.toggleClass('hidden').html(tooltips[tipKey].text)
           $tooltip.css('top', event.pageY)
           $tooltip.css('left', event.pageX)
         }
