@@ -73,7 +73,7 @@
         },
 
         return: {
-          text: "The function and the return (or output) of the function."
+          text: "The return (or output) of the function."
         }
       }
 
@@ -82,10 +82,10 @@
         // event.stopImmediatePropagation()
         const classes = $(this).attr('class')
         const nodeText = $(this).text()
-        const highlightClass = classes.replace('hljs-','')
+        const highlightClass = classes.replace('hljs-','').replace(' active', '')
         const tipKey = highlightClass === 'keyword' 
           ? nodeText
-          : highlightClass.replace(' active', '')
+          : highlightClass
         $(this).toggleClass('active')
         const $tooltip = $(tooltip)
         if (tipKey !== 'keyword') {
