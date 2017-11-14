@@ -1,10 +1,6 @@
 <!doctype html>
 <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
 <style>
-  pre>span {
-    padding: 5px;
-  }
-
   pre {
     font-size: 24px;
     font-family: monospace;
@@ -12,29 +8,6 @@
     padding: 1em;
     color: rgb(255, 241, 221);
     display: inline-block;
-  }
-
-  .keyword {
-    font-weight: bold;
-    color: rgb(255, 104, 255);
-  }
-
-  .param-name {
-    color: rgb(255, 183, 0);
-  }
-
-  .function {
-    color: rgb(52, 208, 255);
-  }
-
-  .value-name {
-    color: rgb(245, 163, 0);
-  }
-
-  .host-object {
-    font-weight: bolder;
-    font-style: italic;
-    color: rgb(255, 251, 0);
   }
 
   #tooltip {
@@ -58,15 +31,19 @@
 
 <body>
   <pre>
-<span id="funcSpan" class="keyword">function</span><span class="function" > add</span> <span class="signature">(<span class="param-name">parameterOne</span>, <span class="param-name">parameterTwo</span>)</span> <span class="curly">{</span>
-  <span class="host-object">console</span><span class="function">.log</span>("Adding the numbers:", parameterOne, parameterTwo)
-  <span class="return"><span class="keyword">return</span> <span class="value-name">parameterOne</span> <span class="pl-k">+</span> <span class="value-name">parameterTwo</span></span>
-<span class="curly">}</span>
+  <code class="javascript">
+    function add (parameterOne, parameterTwo) {
+      console.log('Adding', parameterOne, 'and', parameterTwo)
+      return parameterOne + parameterTwo
+    }
+  </code> 
 </pre>
 
   <span id="tooltip" class="hidden">-</span>
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad()</script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous">
     </script>
@@ -74,9 +51,8 @@
   <script>
     $(document).ready(_ => {
       const tooltips = {
-        curly: {
-          text: "The curly braces delimit the block in which the body of the function lives.",
-          terms: ["Scope", "Delimiters", "Block"]
+        string: {
+          text: `This is a string. Strings can be bounded or delimted by \`backticks\`, 'single qoutes', or "double quotes"`,
         },
 
         function: {
@@ -84,33 +60,40 @@
           terms: ["Hoisting", "Scope", "Closure", "Delimiters", "Arguments", "Parameters", "Signature"]
         },
 
-        signature: {
+        params: {
           text: "This is the function's signature: what parameters it takes."
         },
 
+        title: {
+          text: "This is the name of the function. The function when declared in this way, will be hoisted to the top of its scope."
+        },
+
+        built_in: {
+          text: "`console` is a host object, a built-in object in JavaScript. The `window` is another example."
+        },
+
         return: {
-          text: "The output of the function."
+          text: "The function and the return (or output) of the function."
         }
       }
 
-      $('.curly').hover(showToolTip)
-      $('.return').hover(showToolTip)
-      $('.signature').hover(showToolTip)
-
-      $('span').hover(event => {
+      $('span[class^="hljs-"]').hover(showToolTip)
+      function showToolTip (event) {
+        // event.stopImmediatePropagation()
         const classes = $(this).attr('class')
-        console.log(classes)
-      })
-      function showToolTip(event) {
-        const currentClass = $(this).attr('class').split(" ")[0]
-        console.log(currentClass)
-        const tipText = tooltips[currentClass].text
-        $(`.${currentClass}`)
-          .toggleClass('active')
+        const nodeText = $(this).text()
+        const highlightClass = classes.replace('hljs-','')
+        const tipKey = highlightClass === 'keyword' 
+          ? nodeText
+          : highlightClass.replace(' active', '')
+        $(this).toggleClass('active')
         const $tooltip = $(tooltip)
-        $tooltip.toggleClass('hidden').text(tipText)
-        $tooltip.css('top', event.pageY)
-        $tooltip.css('left', event.pageX)
+        if (tipKey !== 'keyword') {
+          $tooltip.toggleClass('hidden').text(tooltips[tipKey].text)
+          $tooltip.css('top', event.pageY)
+          $tooltip.css('left', event.pageX)
+        }
+        return false
       }
     })
   </script>
