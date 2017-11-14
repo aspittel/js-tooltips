@@ -87,7 +87,11 @@
         }
       }
 
+      $('span[class^="hljs-"]').hover(highlightActive)
       $('span[class^="hljs-"]').hover(showToolTip)
+      function highlightActive (event) {
+        $(this).toggleClass('active')
+      }
       function showToolTip (event) {
         event.stopImmediatePropagation()
         const classes = $(this).attr('class')
@@ -96,7 +100,6 @@
         const tipKey = highlightClass === 'keyword' 
           ? nodeText
           : highlightClass
-        $(this).toggleClass('active')
         const $tooltip = $(tooltip)
         if (tipKey !== 'keyword') {
           $tooltip.toggleClass('hidden').html(tooltips[tipKey].text)
