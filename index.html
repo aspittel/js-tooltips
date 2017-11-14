@@ -3,31 +3,18 @@
 <head>
   <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="js/tooltips.js"></script>
   <title><3</title>
 </head>
 
 <body>
-  <pre>
-  <code class="javascript">
-    function add (parameterOne, parameterTwo) {
-      console.log('Adding', parameterOne, 'and', parameterTwo)
-      return parameterOne + parameterTwo
-    }
-
-    let sum = add(3, 4)
-  </code> 
-</pre>
+  <main>
+    <article>
+      <pre><code class="javascript"></code></pre>
+    </article>
+  </main>  
 
   <span id="tooltip" class="hidden">-</span>
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad()</script>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-    crossorigin="anonymous">
-  </script>
-
-  <script src="js/tooltips.js"></script>
 </body>
