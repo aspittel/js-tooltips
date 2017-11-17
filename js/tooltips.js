@@ -4,7 +4,7 @@ const template =
   return parameterOne + parameterTwo
 }
 
-let sum = add(3, 4)`
+var sum = add(3, 4)`
 
 const example = {
   template,
