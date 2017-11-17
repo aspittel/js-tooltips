@@ -34,7 +34,7 @@ const example = {
       text: "The return (or output) of the function. This will be the value of `sum` when the function `add` is invoked."
     },
 
-    let: {
+    var: {
       text: "A `let` variable named `sum` is declared here. Variables declared with `let` exist only within and not outside of their current scope."
     },
 
