@@ -35,7 +35,7 @@ const example = {
     },
 
     var: {
-      text: "A `let` variable named `sum` is declared here. Variables declared with `let` exist only within and not outside of their current scope."
+      text: "A variable named `sum` is declared here."
     },
 
     number: {
