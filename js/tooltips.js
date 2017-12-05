@@ -14,7 +14,7 @@ const example = {
     },
 
     function: {
-      text: "A function contains code and is run when invoked or called. <br><br> Functions have inputs, called either arguments or parameters. <br><br> When invoking a function, like below with `add(3, 4)`, we pass it 2 arguments, the numbers 3 and 4. <br><br> Parameters are what inputs a function can take, and are defined by the function declaration, like on the line above.",
+      text: "A function contains code that runs when the function invoked (called). <br><br> Functions have inputs, called either arguments or parameters. <br><br> When invoking a function, like below with `add(3, 4)`, we pass it 2 arguments, the numbers 3 and 4. <br><br> Parameters are what inputs a function takes, and are defined by the function declaration, like on the line above.",
       terms: ["Hoisting", "Scope", "Closure", "Delimiters", "Arguments", "Parameters", "Signature"]
     },
 
@@ -39,7 +39,7 @@ const example = {
     },
 
     number: {
-      text: "This is a number in JavaScript. <br><br> It's being passed as one of two arguments to the function `add` invoked here. <br><br>Functions are invoked with `()`. When we pass arguments to a function we are invoking or calling, we place them the in the parentheses, as is done above with 3 and 4."
+      text: "This is a number in JavaScript. <br><br> It's being passed as one of two arguments to the function `add` invoked (or called) here. <br><br>Functions are invoked with `()`. When arguments are passed to an invoked function, they are placed within the parentheses, as is done above with 3 and 4."
     }
   }
 }
@@ -65,16 +65,18 @@ $(document).ready( _=> {
   function showToolTip (event) {
     event.stopImmediatePropagation()
     const $this = $(this)
+    const $tooltip = $('#tooltip')
+
+    $tooltip.toggleClass('hidden')
     const classes = $this.attr('class')
+    const highlightClass = classes.replace(/(hljs-)|( active)/g, '')
     const nodeText = $this.text()
-    const highlightClass = classes.replace('hljs-', '').replace(' active', '')
     const tipKey = highlightClass === 'keyword'
       ? nodeText
       : highlightClass
-    const $tooltip = $('#tooltip')
     if (tipKey !== 'keyword') {
       const toolTipText = example.tooltips[tipKey].text
-      $tooltip.toggleClass('hidden').html(toolTipText)
+      $tooltip.html(toolTipText)
       const posObj = $this.position()
       $tooltip.css('top', posObj.top + $this.height())
       $tooltip.css('left', posObj.left)
