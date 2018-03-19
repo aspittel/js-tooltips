@@ -19,7 +19,7 @@ const example = {
     },
 
     params: {
-      text: "This is the function's signature, or what parameters it takes."
+      text: "These are the function's inputs, or what parameters it takes. Inputs or parameters are part of a function's signature."
     },
 
     title: {
@@ -31,7 +31,7 @@ const example = {
     },
 
     return: {
-      text: "The return (or output) of the function. This will be the value of `sum` when the function `add` is invoked."
+      text: "The return (or output) of the function. This will be the value of `sum` when the function `add` is invoked. This is the other part of a function's signature."
     },
 
     var: {
